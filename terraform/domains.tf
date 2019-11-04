@@ -158,7 +158,7 @@ resource "digitalocean_record" "proven-properties-dkim" {
   domain = digitalocean_domain.proven-properties.name
   type   = "TXT"
   name   = "google._domainkey"
-  value  = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2QxSf+PmhBA55FjFpjyN4y4n+mYxVTcRYQu9+PNj81XJ2fOH/kRAMq7Fm8wzm/UXA0rG/AdBGFaLoIam0A2osyNnscS3HQRFneT5tuoslHQXOSHeGGFY15AP0g9Mb6q8oKZbxag6Yw47DSfBdqgkQ+gl+D/IcTXXZmI4710kA/Dfxu7e6GkthbQojXYNkpB69vP3IM5S1rAE6Ns48aqmf3TjARS7hkxrH+31DeFEo5KZncqH/dNjEb51wMpGSUVL8DLLhiDz0+ai9p9MnAKIEZYMyAhrXREWQL5KanHmyQnziAmQx8pNk8UOV7uibBjKrhaG7svgCB/cFni+ncv9PQIDAQAB"
+  value  = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsQY+OBW1t+HGoKeycwxgR54TUonz8gB1mM9Ya+byL8BMEDe33LsgXFm4BNe7fUMYcOWW322ZidJM/GUVVUQg5P2ryHrQ1lqQ+SE6ujv1zcGAJzLOkxBK22i1tt3AI5vguIvi1oJ3fZsug0vbv0Sx8mXBUYK5v8GLqtoodC+8Gh1i87dKYVGbHTyyEOMQ+434Z8jn3whZi+8I2NIOc/ruEXNwJgrC1ie/+xJJSvrQYQOxISINYAoAulFLUlqDozvj5U/wkX4tg5FOFWULVv1aSDUN4d0ljEzWWOtw934Pty4OYSGXTSAyDQQgBOHNJTLYWBpW4laRf4X4ILoIoMra+QIDAQAB"
   ttl    = 3600
 }
 
