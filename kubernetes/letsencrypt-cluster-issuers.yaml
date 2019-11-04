@@ -1,0 +1,43 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    email: sam.james.parkinson@gmail.com
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    solvers:
+      - selector:
+          dnsNames:
+            - isitup.org
+            - uncomplicated.systems
+            - proven.properties
+        dns01:
+          digitalocean:
+            tokenSecretRef:
+              name: digitalocean
+              key: access-token
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-production
+spec:
+  acme:
+    email: sam.james.parkinson@gmail.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-production
+    solvers:
+      - selector:
+          dnsNames:
+            - isitup.org
+            - uncomplicated.systems
+            - proven.properties
+        dns01:
+          digitalocean:
+            tokenSecretRef:
+              name: digitalocean
+              key: access-token
