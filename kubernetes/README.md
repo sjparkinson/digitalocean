@@ -17,7 +17,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/mast
 And the load balancer.
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml
+kubectl apply -f digitalocean-load-balancer.yaml
 ```
 
 **Upgrading**
@@ -33,12 +33,6 @@ kubectl edit deployment nginx-ingress-controller
 > cert-manager is a native Kubernetes certificate management controller. It can help with issuing certificates from a variety of sources, such as Let’s Encrypt, HashiCorp Vault, Venafi, a simple signing keypair, or self signed.
 
 https://cert-manager.readthedocs.io/en/latest/index.html
-
-Add a DigitalOcean personal access token. Generate a token at https://cloud.digitalocean.com/account/api/tokens/new.
-
-```bash
-kubectl create secret generic digitalocean --from-literal=access-token=$(read -p "Enter your DigitalOcean personal access token: " token; echo $token)
-```
 
 Configure cert-manager.
 

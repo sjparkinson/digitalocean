@@ -9,16 +9,9 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-staging
     solvers:
-      - selector:
-          dnsNames:
-            - isitup.org
-            - uncomplicated.systems
-            - proven.properties
-        dns01:
-          digitalocean:
-            tokenSecretRef:
-              name: digitalocean
-              key: access-token
+      - http01:
+          ingress:
+            class: nginx
 ---
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
@@ -31,13 +24,6 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-production
     solvers:
-      - selector:
-          dnsNames:
-            - isitup.org
-            - uncomplicated.systems
-            - proven.properties
-        dns01:
-          digitalocean:
-            tokenSecretRef:
-              name: digitalocean
-              key: access-token
+      - http01:
+          ingress:
+            class: nginx
