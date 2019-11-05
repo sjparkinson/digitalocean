@@ -20,14 +20,6 @@ And the load balancer.
 kubectl apply -f digitalocean-load-balancer.yaml
 ```
 
-**Upgrading**
-
-The guide can be found at https://kubernetes.github.io/ingress-nginx/deploy/upgrade/.
-
-```bash
-kubectl edit deployment nginx-ingress-controller
-```
-
 ## Cert Manager
 
 > cert-manager is a native Kubernetes certificate management controller. It can help with issuing certificates from a variety of sources, such as Let’s Encrypt, HashiCorp Vault, Venafi, a simple signing keypair, or self signed.
