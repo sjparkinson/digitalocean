@@ -38,3 +38,11 @@ Add the Lets Encrypt cluster issuers.
 ```bash
 kubectl apply -f letsencrypt-cluster-issuers.yaml
 ```
+
+## Monitoring
+
+Add kube-state-metrics to enable the DigitalOcean advanced metrics dashboard.
+
+```bash
+kubectl apply -f kube-state-metrics.yaml
+```
