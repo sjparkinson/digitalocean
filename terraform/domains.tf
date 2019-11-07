@@ -17,7 +17,7 @@ resource "digitalocean_record" "isitup-org-dmarc" {
   domain = digitalocean_domain.isitup-org.name
   type   = "TXT"
   name   = "_dmarc"
-  value  = "v=DMARC1; p=reject; sp=reject"
+  value  = "v=DMARC1; p=reject"
   ttl    = 3600
 }
 
@@ -72,7 +72,7 @@ resource "digitalocean_record" "uncomplicated-systems-dmarc" {
   domain = digitalocean_domain.uncomplicated-systems.name
   type   = "TXT"
   name   = "_dmarc"
-  value  = "v=DMARC1; p=reject; sp=reject"
+  value  = "v=DMARC1; p=reject"
   ttl    = 3600
 }
 
@@ -166,7 +166,7 @@ resource "digitalocean_record" "proven-properties-dmarc" {
   domain = digitalocean_domain.proven-properties.name
   type   = "TXT"
   name   = "_dmarc"
-  value  = "v=DMARC1 p=quarantine pct=100 rua=mailto:samuel@proven.properties sp=reject aspf=s"
+  value  = "v=DMARC1; p=quarantine;"
   ttl    = 3600
 }
 
