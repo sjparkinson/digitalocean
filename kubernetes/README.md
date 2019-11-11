@@ -46,3 +46,11 @@ Add kube-state-metrics to enable the DigitalOcean advanced metrics dashboard.
 ```bash
 kubectl apply -f kube-state-metrics.yaml
 ```
+
+## Autoscaling
+
+Add metrics-server to enable autoscaling with the Horizontal Pod Autoscaler.
+
+```bash
+kubectl apply -f metrics-server.yaml
+```
