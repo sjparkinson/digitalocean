@@ -3,6 +3,9 @@
 ## Terraform Importing
 
 ```bash
+# Imports for certificates
+terraform import digitalocean_certificate.isitup-org-tls-certificate 0eb327fc-4b97-49d8-ab90-d9f4c6a96b44
+
 # Imports for isitup.org
 terraform import digitalocean_domain.isitup-org isitup.org
 terraform import digitalocean_record.isitup-org-caa isitup.org,82265461
