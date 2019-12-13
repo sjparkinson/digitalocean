@@ -7,6 +7,8 @@ metadata:
     rbac.authorization.k8s.io/aggregate-to-view: "true"
     rbac.authorization.k8s.io/aggregate-to-edit: "true"
     rbac.authorization.k8s.io/aggregate-to-admin: "true"
+    app.kubernetes.io/part-of: metrics-server
+    app.kubernetes.io/version: v0.3.6
 rules:
   - apiGroups: ["metrics.k8s.io"]
     resources: ["pods", "nodes"]
@@ -16,6 +18,9 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: metrics-server:system:auth-delegator
+  labels:
+    app.kubernetes.io/part-of: metrics-server
+    app.kubernetes.io/version: v0.3.6
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -30,6 +35,9 @@ kind: RoleBinding
 metadata:
   name: metrics-server-auth-reader
   namespace: kube-system
+  labels:
+    app.kubernetes.io/part-of: metrics-server
+    app.kubernetes.io/version: v0.3.6
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -43,6 +51,9 @@ apiVersion: apiregistration.k8s.io/v1beta1
 kind: APIService
 metadata:
   name: v1beta1.metrics.k8s.io
+  labels:
+    app.kubernetes.io/part-of: metrics-server
+    app.kubernetes.io/version: v0.3.6
 spec:
   service:
     name: metrics-server
@@ -58,6 +69,9 @@ kind: ServiceAccount
 metadata:
   name: metrics-server
   namespace: kube-system
+  labels:
+    app.kubernetes.io/part-of: metrics-server
+    app.kubernetes.io/version: v0.3.6
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -65,7 +79,9 @@ metadata:
   name: metrics-server
   namespace: kube-system
   labels:
-    k8s-app: metrics-server
+    app.kubernetes.io/name: metrics-server
+    app.kubernetes.io/part-of: metrics-server
+    app.kubernetes.io/version: v0.3.6
 spec:
   selector:
     matchLabels:
@@ -110,9 +126,12 @@ metadata:
   labels:
     kubernetes.io/name: "Metrics-server"
     kubernetes.io/cluster-service: "true"
+    app.kubernetes.io/part-of: metrics-server
+    app.kubernetes.io/version: v0.3.6
 spec:
   selector:
-    k8s-app: metrics-server
+    app.kubernetes.io/name: metrics-server
+    app.kubernetes.io/part-of: metrics-server
   ports:
     - port: 443
       protocol: TCP
@@ -122,6 +141,9 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: system:metrics-server
+  labels:
+    app.kubernetes.io/part-of: metrics-server
+    app.kubernetes.io/version: v0.3.6
 rules:
   - apiGroups:
       - ""
@@ -139,6 +161,9 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: system:metrics-server
+  labels:
+    app.kubernetes.io/part-of: metrics-server
+    app.kubernetes.io/version: v0.3.6
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole

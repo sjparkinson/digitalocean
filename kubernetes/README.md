@@ -11,7 +11,7 @@ The deployment guide can be found at https://kubernetes.github.io/ingress-nginx/
 Configure the load balancer.
 
 ```bash
-kubectl apply -f digitalocean-load-balancer.yaml
+kubectl apply -l 'app.kubernetes.io/part-of=ingress-nginx' --prune -f digitalocean-load-balancer.yaml
 ```
 
 ## Monitoring
@@ -19,7 +19,7 @@ kubectl apply -f digitalocean-load-balancer.yaml
 Add kube-state-metrics to enable the DigitalOcean advanced metrics dashboard.
 
 ```bash
-kubectl apply -f kube-state-metrics.yaml
+kubectl apply -l 'app.kubernetes.io/part-of=kube-state-metrics' --prune -f kube-state-metrics.yaml
 ```
 
 ## Autoscaling
@@ -27,5 +27,5 @@ kubectl apply -f kube-state-metrics.yaml
 Add metrics-server to enable autoscaling with the Horizontal Pod Autoscaler.
 
 ```bash
-kubectl apply -f metrics-server.yaml
+kubectl apply -l 'app.kubernetes.io/part-of=metrics-server' --prune -f metrics-server.yaml
 ```
