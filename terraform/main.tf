@@ -1,5 +1,5 @@
 provider "digitalocean" {
-  version = "~> 1.10"
+  version = "~> 1.14"
 }
 
 resource "digitalocean_certificate" "isitup-org-tls-certificate" {
