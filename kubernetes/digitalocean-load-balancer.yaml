@@ -599,9 +599,12 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
-    service.beta.kubernetes.io/do-loadbalancer-protocol: "http2"
+    service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
+    service.beta.kubernetes.io/do-loadbalancer-http-ports: "80"
     service.beta.kubernetes.io/do-loadbalancer-http2-ports: "443"
+    # Certificate IDs change when Lets Encrypt rotates the certificate, this is only needed for the initial provisioning.
     service.beta.kubernetes.io/do-loadbalancer-certificate-id: "99c461ff-9017-4ae1-bfd3-f1102253fd7d"
+    service.beta.kubernetes.io/do-loadbalancer-enable-backend-keepalive: "true"
     service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
   labels:
     app.kubernetes.io/name: ingress-nginx
@@ -612,10 +615,13 @@ metadata:
   namespace: ingress-nginx
 spec:
   type: LoadBalancer
-  externalTrafficPolicy: Local
   ports:
     - name: https
       port: 443
+      protocol: TCP
+      targetPort: 80
+    - name: http
+      port: 80
       protocol: TCP
       targetPort: 80
   selector:
