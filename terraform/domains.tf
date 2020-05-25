@@ -25,7 +25,7 @@ resource "digitalocean_record" "isitup-org-a" {
   domain = digitalocean_domain.isitup-org.name
   type   = "A"
   name   = "@"
-  value  = "159.65.214.172"
+  value  = "157.245.30.75"
   ttl    = 3600
 }
 
