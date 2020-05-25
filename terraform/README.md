@@ -3,14 +3,17 @@
 ## Terraform Importing
 
 ```bash
-# Imports for certificates
-terraform import digitalocean_certificate.isitup-org-tls-certificate 0eb327fc-4b97-49d8-ab90-d9f4c6a96b44
+# Imports for Kubernetes
+terraform import digitalocean_kubernetes_cluster.k8s-lon1 d3bb65a7-1cf5-40d5-8cba-93b0dd0f6b1e
+
+# Imports for TLS certificates
+terraform import digitalocean_certificate.isitup-org-tls-certificate 99c461ff-9017-4ae1-bfd3-f1102253fd7d
 
 # Imports for isitup.org
 terraform import digitalocean_domain.isitup-org isitup.org
 terraform import digitalocean_record.isitup-org-caa isitup.org,82265461
 terraform import digitalocean_record.isitup-org-dmarc isitup.org,82264234
-terraform import digitalocean_record.isitup-org-a isitup.org,82264214
+terraform import digitalocean_record.isitup-org-a isitup.org,100686440
 terraform import digitalocean_record.isitup-org-ns1 isitup.org,82264193
 terraform import digitalocean_record.isitup-org-ns2 isitup.org,82264194
 terraform import digitalocean_record.isitup-org-ns3 isitup.org,82264195
