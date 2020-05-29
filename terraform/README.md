@@ -6,9 +6,6 @@
 # Imports for Kubernetes
 terraform import digitalocean_kubernetes_cluster.k8s-lon1 d3bb65a7-1cf5-40d5-8cba-93b0dd0f6b1e
 
-# Imports for TLS certificates
-terraform import digitalocean_certificate.isitup-org-tls-certificate 99c461ff-9017-4ae1-bfd3-f1102253fd7d
-
 # Imports for floating IP addresses
 terraform import digitalocean_floating_ip.mindustry 159.65.212.70
 
