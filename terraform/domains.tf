@@ -25,7 +25,7 @@ resource "digitalocean_record" "isitup-org-a" {
   domain = digitalocean_domain.isitup-org.name
   type   = "A"
   name   = "@"
-  value  = "157.245.30.75"
+  value  = "139.59.197.142"
   ttl    = 3600
 }
 
@@ -104,6 +104,22 @@ resource "digitalocean_record" "uncomplicated-systems-a4" {
   type   = "A"
   name   = "@"
   value  = "185.199.111.153"
+  ttl    = 3600
+}
+
+resource "digitalocean_record" "uncomplicated-systems-k8s" {
+  domain = digitalocean_domain.uncomplicated-systems.name
+  type   = "A"
+  name   = "k8s"
+  value  = "139.59.197.142"
+  ttl    = 3600
+}
+
+resource "digitalocean_record" "uncomplicated-systems-pine" {
+  domain = digitalocean_domain.uncomplicated-systems.name
+  type   = "A"
+  name   = "pine"
+  value  = "139.59.197.142"
   ttl    = 3600
 }
 

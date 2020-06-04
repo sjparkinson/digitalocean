@@ -16,7 +16,6 @@ resource "digitalocean_kubernetes_cluster" "k8s-lon1" {
   }
 }
 
-# TODO: deploy new CPU optimized node pool
 resource "digitalocean_kubernetes_node_pool" "pool-cpu-optimized" {
   cluster_id = digitalocean_kubernetes_cluster.k8s-lon1.id
   name       = "pool-cpu-optimized"
@@ -27,6 +26,6 @@ resource "digitalocean_kubernetes_node_pool" "pool-cpu-optimized" {
 # Used to route UDP & TCP mindustry traffic to the node running the pod.
 # TODO: update droplet_id to the new CPU optimized node, find it with `doctl compute droplet list --format 'ID,Name,VCPUs,Memory'`
 resource "digitalocean_floating_ip" "mindustry" {
-  droplet_id = 194118515
+  droplet_id = 194856707
   region     = "lon1"
 }

@@ -29,3 +29,18 @@ Add metrics-server to enable autoscaling with the Horizontal Pod Autoscaler.
 ```bash
 kubectl apply -f metrics-server.yaml
 ```
+
+## Cert-manager
+
+Add Let's Encrypt support to Ingress resources.
+
+```bash
+kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.15.1/cert-manager.yaml
+kubectl apply -f cert-manager.yaml
+```
+
+## Secrets
+
+```bash
+... github
+```
