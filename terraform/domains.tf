@@ -123,14 +123,6 @@ resource "digitalocean_record" "uncomplicated-systems-pine" {
   ttl    = 3600
 }
 
-resource "digitalocean_record" "uncomplicated-systems-mindustry" {
-  domain = digitalocean_domain.uncomplicated-systems.name
-  type   = "A"
-  name   = "mindustry"
-  value  = digitalocean_floating_ip.mindustry.ip_address
-  ttl    = 3600
-}
-
 resource "digitalocean_record" "uncomplicated-systems-ns1" {
   domain = digitalocean_domain.uncomplicated-systems.name
   type   = "NS"
