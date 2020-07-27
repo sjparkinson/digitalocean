@@ -107,14 +107,6 @@ resource "digitalocean_record" "uncomplicated-systems-a4" {
   ttl    = 3600
 }
 
-resource "digitalocean_record" "uncomplicated-systems-k8s" {
-  domain = digitalocean_domain.uncomplicated-systems.name
-  type   = "A"
-  name   = "k8s"
-  value  = "139.59.197.142"
-  ttl    = 3600
-}
-
 resource "digitalocean_record" "uncomplicated-systems-pine" {
   domain = digitalocean_domain.uncomplicated-systems.name
   type   = "A"
