@@ -6,8 +6,14 @@
 # Imports for Kubernetes
 terraform import digitalocean_kubernetes_cluster.k8s-lon1 d3bb65a7-1cf5-40d5-8cba-93b0dd0f6b1e
 
-# Imports for floating IP addresses
-terraform import digitalocean_floating_ip.mindustry 159.65.212.70
+# Imports for Spaces
+terraform import digitalocean_spaces_bucket.pinus-sylvestris fra1,pinus-sylvestris
+
+# Imports for whatsthecharge.com
+terraform import digitalocean_domain.whatsthecharge-com whatsthecharge.com
+terraform import digitalocean_record.whatsthecharge-com-ns1 whatsthecharge.com,116252391
+terraform import digitalocean_record.whatsthecharge-com-ns2 whatsthecharge.com,116252393
+terraform import digitalocean_record.whatsthecharge-com-ns3 whatsthecharge.com,116252397
 
 # Imports for isitup.org
 terraform import digitalocean_domain.isitup-org isitup.org

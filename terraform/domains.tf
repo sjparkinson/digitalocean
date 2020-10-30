@@ -1,3 +1,58 @@
+// whatsthecharge.com
+resource "digitalocean_domain" "whatsthecharge-com" {
+  name = "whatsthecharge.com"
+}
+
+resource "digitalocean_record" "whatsthecharge-com-caa" {
+  domain = digitalocean_domain.whatsthecharge-com.name
+  type   = "CAA"
+  name   = "@"
+  value  = "letsencrypt.org."
+  tag    = "issue"
+  flags  = "0"
+  ttl    = 3600
+}
+
+resource "digitalocean_record" "whatsthecharge-com-dmarc" {
+  domain = digitalocean_domain.whatsthecharge-com.name
+  type   = "TXT"
+  name   = "_dmarc"
+  value  = "v=DMARC1; p=reject"
+  ttl    = 3600
+}
+
+resource "digitalocean_record" "whatsthecharge-com-a" {
+  domain = digitalocean_domain.whatsthecharge-com.name
+  type   = "A"
+  name   = "@"
+  value  = "139.59.197.142"
+  ttl    = 3600
+}
+
+resource "digitalocean_record" "whatsthecharge-com-ns1" {
+  domain = digitalocean_domain.whatsthecharge-com.name
+  type   = "NS"
+  name   = "@"
+  value  = "ns1.digitalocean.com."
+  ttl    = 3600
+}
+
+resource "digitalocean_record" "whatsthecharge-com-ns2" {
+  domain = digitalocean_domain.whatsthecharge-com.name
+  type   = "NS"
+  name   = "@"
+  value  = "ns1.digitalocean.com."
+  ttl    = 3600
+}
+
+resource "digitalocean_record" "whatsthecharge-com-ns3" {
+  domain = digitalocean_domain.whatsthecharge-com.name
+  type   = "NS"
+  name   = "@"
+  value  = "ns1.digitalocean.com."
+  ttl    = 3600
+}
+
 // isitup.org
 resource "digitalocean_domain" "isitup-org" {
   name = "isitup.org"
@@ -107,11 +162,19 @@ resource "digitalocean_record" "uncomplicated-systems-a4" {
   ttl    = 3600
 }
 
-resource "digitalocean_record" "uncomplicated-systems-pine" {
+resource "digitalocean_record" "uncomplicated-systems-k8s" {
   domain = digitalocean_domain.uncomplicated-systems.name
   type   = "A"
-  name   = "pine"
+  name   = "k8s"
   value  = "139.59.197.142"
+  ttl    = 3600
+}
+
+resource "digitalocean_record" "uncomplicated-systems-pine" {
+  domain = digitalocean_domain.uncomplicated-systems.name
+  type   = "CNAME"
+  name   = "pine"
+  value  = "sjparkinson.github.io."
   ttl    = 3600
 }
 

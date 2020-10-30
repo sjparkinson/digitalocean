@@ -6,4 +6,6 @@ Configuration for the personal DigitalOcean account.
 
 ```bash
 export DIGITALOCEAN_TOKEN=
+export SPACES_ACCESS_KEY_ID=
+export SPACES_SECRET_ACCESS_KEY=
 ```
