@@ -35,6 +35,6 @@ kubectl apply -f metrics-server.yaml
 Add Let's Encrypt support to Ingress resources.
 
 ```bash
-kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.16.0/cert-manager.yaml
+kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.3/cert-manager.yaml
 kubectl apply -f cert-manager.yaml
 ```

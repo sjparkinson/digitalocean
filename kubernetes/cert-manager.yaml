@@ -1,18 +1,26 @@
-apiVersion: admissionregistration.k8s.io/v1beta1
+apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
 metadata:
-  name: cert-manager-webhook
+  annotations:
+    cert-manager.io/inject-ca-from-secret: cert-manager/cert-manager-webhook-ca
   labels:
     app: webhook
-    app.kubernetes.io/name: webhook
+    app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: cert-manager
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/component: "webhook"
-    helm.sh/chart: cert-manager-v0.16.0
-  annotations:
-    cert-manager.io/inject-ca-from-secret: "cert-manager/cert-manager-webhook-ca"
+    app.kubernetes.io/name: webhook
+  name: cert-manager-webhook
 webhooks:
-  - name: webhook.cert-manager.io
+  - admissionReviewVersions:
+      - v1
+      - v1beta1
+    clientConfig:
+      service:
+        name: cert-manager-webhook
+        namespace: cert-manager
+        path: /mutate
+    timeoutSeconds: 25
+    failurePolicy: Fail
+    name: webhook.cert-manager.io
     namespaceSelector:
       matchExpressions:
         # DigitalOcean cannot apply Kubernetes upgrades without this expression.
@@ -20,8 +28,8 @@ webhooks:
           operator: Exists
     rules:
       - apiGroups:
-          - "cert-manager.io"
-          - "acme.cert-manager.io"
+          - cert-manager.io
+          - acme.cert-manager.io
         apiVersions:
           - "*"
         operations:
@@ -29,49 +37,48 @@ webhooks:
           - UPDATE
         resources:
           - "*/*"
-    timeoutSeconds: 25
-    failurePolicy: Fail
-    # Only include 'sideEffects' field in Kubernetes 1.12+
     sideEffects: None
-    clientConfig:
-      service:
-        name: cert-manager-webhook
-        namespace: "cert-manager"
-        path: /mutate
 ---
-# Source: cert-manager/templates/webhook-validating-webhook.yaml
-apiVersion: admissionregistration.k8s.io/v1beta1
+apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
-  name: cert-manager-webhook
+  annotations:
+    cert-manager.io/inject-ca-from-secret: cert-manager/cert-manager-webhook-ca
   labels:
     app: webhook
-    app.kubernetes.io/name: webhook
+    app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: cert-manager
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/component: "webhook"
-    helm.sh/chart: cert-manager-v0.16.0
-  annotations:
-    cert-manager.io/inject-ca-from-secret: "cert-manager/cert-manager-webhook-ca"
+    app.kubernetes.io/name: webhook
+  name: cert-manager-webhook
 webhooks:
-  - name: webhook.cert-manager.io
+  - admissionReviewVersions:
+      - v1
+      - v1beta1
+    clientConfig:
+      service:
+        name: cert-manager-webhook
+        namespace: cert-manager
+        path: /validate
+    timeoutSeconds: 25
+    failurePolicy: Fail
+    name: webhook.cert-manager.io
     namespaceSelector:
       matchExpressions:
-      - key: "cert-manager.io/disable-validation"
-        operator: "NotIn"
-        values:
-        - "true"
-      - key: "name"
-        operator: "NotIn"
-        values:
-        - cert-manager
-      # DigitalOcean cannot apply Kubernetes upgrades without this expression.
-      - key: doks.digitalocean.com/webhook
-        operator: Exists
+        - key: cert-manager.io/disable-validation
+          operator: NotIn
+          values:
+            - "true"
+        - key: name
+          operator: NotIn
+          values:
+            - cert-manager
+        # DigitalOcean cannot apply Kubernetes upgrades without this expression.
+        - key: doks.digitalocean.com/webhook
+          operator: Exists
     rules:
       - apiGroups:
-          - "cert-manager.io"
-          - "acme.cert-manager.io"
+          - cert-manager.io
+          - acme.cert-manager.io
         apiVersions:
           - "*"
         operations:
@@ -79,15 +86,7 @@ webhooks:
           - UPDATE
         resources:
           - "*/*"
-    failurePolicy: Fail
-    timeoutSeconds: 25
-    # Only include 'sideEffects' field in Kubernetes 1.12+
     sideEffects: None
-    clientConfig:
-      service:
-        name: cert-manager-webhook
-        namespace: "cert-manager"
-        path: /validate
 ---
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
