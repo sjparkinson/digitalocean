@@ -29,6 +29,7 @@ webhooks:
           - UPDATE
         resources:
           - "*/*"
+    timeoutSeconds: 25
     failurePolicy: Fail
     # Only include 'sideEffects' field in Kubernetes 1.12+
     sideEffects: None
@@ -79,6 +80,7 @@ webhooks:
         resources:
           - "*/*"
     failurePolicy: Fail
+    timeoutSeconds: 25
     # Only include 'sideEffects' field in Kubernetes 1.12+
     sideEffects: None
     clientConfig:
